@@ -1,4 +1,4 @@
-'{
+{
         "count": 4,
         "next": null,
         "previous": null,
@@ -136,4 +136,4 @@
                 "last_updated": "2019-04-10T06:10:42.199404Z"
             }
         ]
-    }'
+    }
