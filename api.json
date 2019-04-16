@@ -1,0 +1,138 @@
+{
+    "count": 4,
+    "next": null,
+    "previous": null,
+    "results": [{
+            "id": 18,
+            "family": {
+                "value": 4,
+                "label": "IPv4"
+            },
+            "address": "10.52.10.200/32",
+            "vrf": null,
+            "tenant": null,
+            "status": {
+                "value": 1,
+                "label": "Active"
+            },
+            "role": null,
+            "interface": {
+                "id": 21,
+                "url": "http://netbox.local/api/virtualization/interfaces/21/",
+                "device": null,
+                "virtual_machine": {
+                    "id": 29,
+                    "url": "http://netbox.local/api/virtualization/virtual-machines/29/",
+                    "name": "haproxy3002"
+                },
+                "name": "e1"
+            },
+            "description": "",
+            "nat_inside": null,
+            "nat_outside": null,
+            "tags": [],
+            "custom_fields": {},
+            "created": "2019-04-10",
+            "last_updated": "2019-04-10T06:10:42.410760Z"
+        },
+        {
+            "id": 19,
+            "family": {
+                "value": 4,
+                "label": "IPv4"
+            },
+            "address": "10.52.10.204/32",
+            "vrf": null,
+            "tenant": null,
+            "status": {
+                "value": 1,
+                "label": "Active"
+            },
+            "role": null,
+            "interface": {
+                "id": 22,
+                "url": "http://netbox.local/api/virtualization/interfaces/22/",
+                "device": null,
+                "virtual_machine": {
+                    "id": 30,
+                    "url": "http://netbox.local/api/virtualization/virtual-machines/30/",
+                    "name": "haproxy3003"
+                },
+                "name": "e1"
+            },
+            "description": "",
+            "nat_inside": null,
+            "nat_outside": null,
+            "tags": [],
+            "custom_fields": {},
+            "created": "2019-04-10",
+            "last_updated": "2019-04-10T06:10:42.623938Z"
+        },
+        {
+            "id": 16,
+            "family": {
+                "value": 4,
+                "label": "IPv4"
+            },
+            "address": "10.52.95.24/32",
+            "vrf": null,
+            "tenant": null,
+            "status": {
+                "value": 1,
+                "label": "Active"
+            },
+            "role": null,
+            "interface": {
+                "id": 19,
+                "url": "http://netbox.local/api/virtualization/interfaces/19/",
+                "device": null,
+                "virtual_machine": {
+                    "id": 27,
+                    "url": "http://netbox.local/api/virtualization/virtual-machines/27/",
+                    "name": "haproxy3000"
+                },
+                "name": "e1"
+            },
+            "description": "",
+            "nat_inside": null,
+            "nat_outside": null,
+            "tags": [],
+            "custom_fields": {},
+            "created": "2019-04-10",
+            "last_updated": "2019-04-10T06:10:41.988492Z"
+        },
+        {
+            "id": 17,
+            "family": {
+                "value": 4,
+                "label": "IPv4"
+            },
+            "address": "10.52.95.25/32",
+            "vrf": null,
+            "tenant": null,
+            "status": {
+                "value": 1,
+                "label": "Active"
+            },
+            "role": null,
+            "interface": {
+                "id": 20,
+                "url": "http://netbox.local/api/virtualization/interfaces/20/",
+                "device": null,
+                "virtual_machine": {
+                    "id": 28,
+                    "url": "http://netbox.local/api/virtualization/virtual-machines/28/",
+                    "name": "haproxy3001"
+                },
+                "name": "e1"
+            },
+            "description": "",
+            "nat_inside": null,
+            "nat_outside": null,
+            "tags": [],
+            "custom_fields": {},
+            "created": "2019-04-10",
+            "last_updated": "2019-04-10T06:10:42.199404Z"
+        }
+    ]
+}
