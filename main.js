@@ -1,41 +1,45 @@
-const url = "http://192.168.56.197/api/ipam/ip-addresses/?format=json";
+const url = "api.json";
+window.addEventListener('load', getJson());
+
 const IPCIDR = require("ip-cidr");
-const cidrMap = new Map();
 
-fetch(url, {
-  method: "GET",
-  mode: "cors",
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    Authorization: "Token fe49d531f8bc1dd6f05a0902c09f9ec7a1d58553"
-  }
-})
-  .then(response => {
-    return response.json();
-  })
-  .then(json => {
-    json.results.forEach(element => {
-      const cidr = new IPCIDR(element.address);
-      d3.select("body")
-        .selectAll("p")
-        .data(cidr.toArray())
-        .enter()
-        .append("p")
-        .text(d => {
-          return d;
-        });
-      //console.log(cidr.toArray());
-      // cidrMap.set(element.address, cidr.toArray);
-      console.log(
-        `${element.address} ${element.interface.virtual_machine.name} ${
-          element.status.label
-        }`
-      );
+const btn = document.createElement('button');
+const subnet = document.getElementById('subnet');
+
+const a = document.createElement('a');
+const ips = document.getElementById('ips');
+
+
+async function getJson() {
+    let response = await fetch(url);
+    let parsed = await response.json();
+    showIPs(parsed.results)
+    createVisualization(parsed.results)
+}
+
+function showIPs(json) {
+    json.forEach(element => {
+        a.innerHTML = `${element.address} ${element.interface.virtual_machine.name} ${element.status.label}`;
+        ips.appendChild(a.cloneNode(true));
     });
-  });
+}
 
-// console.log(cidrMap.size);
-// cidrMap.forEach((v, k) => {
-//     console.log(`${v}, ${k}`);
-// });
+function createVisualization(json) {
+    console.log(json);
+    json.forEach(element => {
+        const cidr = new IPCIDR(element.address);
+
+        // let ip = element.address.split(/[\.\/]/);
+        // btn.innerHTML = `.${ip[3]}`;
+        cidr.toArray().forEach(ip=>{
+            let end = ip.split(/[\.\/]/);
+            btn.innerHTML = `.${end[3]}`;
+            subnet.appendChild(btn.cloneNode(true));
+        });
+        // btn.innerHTML = `${cidr.toArray()}`;
+
+        // subnet.appendChild(btn.cloneNode(true));
+    });
+}
+
+

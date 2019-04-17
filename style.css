@@ -1,0 +1,58 @@
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+body {
+	font-family: 'Lato', sans-serif;
+	background: #353535;
+    color: #FFF;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 2em;
+    padding-left: 2em;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+button {
+    border-color: coral;
+    background-color: transparent;
+    outline: none;
+    overflow: hidden;
+    border-radius: 0.25em;
+    color: #FFF;
+    padding: 0.3em 0.4em;
+    text-align: center;
+    font-size: 1em;
+    margin: 0.2em;
+    height: 2.8em;
+    width: 3.2em;
+  }
+  
+button:hover {
+    background-color: coral;
+  }
+
+  h1 {
+    padding: 1rem 0;
+  }
+
+  a {
+    word-spacing: 1em;
+    display: block;
+    text-align: left;
+    font-size: 1.5em;
+    margin: 0.4em 0;
+    color: #FFF;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: coral;
+    text-decoration: none;
+  }
+
+  #ips {
+      margin: 3em 0;
+  }
