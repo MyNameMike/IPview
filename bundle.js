@@ -14,37 +14,45 @@ const ips = document.getElementById('ips');
 async function getJson() {
     let response = await fetch(url);
     let parsed = await response.json();
+    console.log(parsed.results);
     showIPs(parsed.results)
-    createVisualization(parsed.results)
+    createVisualization(parsed.results);
+    hideSubnet(parsed.count);
 }
 
 function showIPs(json) {
     json.forEach(element => {
         a.innerHTML = `${element.address} ${element.interface.virtual_machine.name} ${element.status.label}`;
+        a.setAttribute('class', 'summary');
         ips.appendChild(a.cloneNode(true));
     });
 }
 
 function createVisualization(json) {
-    console.log(json);
     json.forEach(element => {
         const cidr = new IPCIDR(element.address);
-
-        // let ip = element.address.split(/[\.\/]/);
-        // btn.innerHTML = `.${ip[3]}`;
         cidr.toArray().forEach(ip=>{
             let end = ip.split(/[\.\/]/);
             btn.innerHTML = `.${end[3]}`;
+            btn.setAttribute('class', 'ip');
             subnet.appendChild(btn.cloneNode(true));
         });
-        // btn.innerHTML = `${cidr.toArray()}`;
-
-        // subnet.appendChild(btn.cloneNode(true));
     });
+}
+
+function hideSubnet(length) {
+  for (let i = 0; i < length; i++) {
+    document.getElementsByClassName('ip')[i].style.display = 'none';
+  }
+}
+
+function showSubnet() {
+
 }
 
 
 
+/*==========================================================================*/
 },{"ip-cidr":13}],2:[function(require,module,exports){
 'use strict';
 
