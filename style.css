@@ -9,10 +9,9 @@ body {
 
 .container-fluid {
     width: 100%;
-    padding-right: 2em;
-    padding-left: 2em;
     margin-right: auto;
     margin-left: auto;
+    padding: 1em 2em;
   }
 
 button {
@@ -46,6 +45,7 @@ button:hover {
     margin: 0.4em 0;
     color: #FFF;
     text-decoration: none;
+    cursor: pointer;
   }
 
   a:hover {
