@@ -33,11 +33,11 @@ button:hover {
     background-color: coral;
   }
 
-  h1 {
+h1 {
     padding: 1rem 0;
   }
 
-  a {
+a {
     word-spacing: 1em;
     display: block;
     text-align: left;
@@ -48,11 +48,12 @@ button:hover {
     cursor: pointer;
   }
 
-  a:hover {
+a:hover {
     color: coral;
     text-decoration: none;
   }
 
-  #ips {
+#ips {
       margin: 3em 0;
   }
+

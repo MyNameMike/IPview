@@ -1,3 +1,6 @@
+
+/*==========================================================================*/
+
 const url = "http://192.168.56.197/api/ipam/ip-addresses";
 window.addEventListener("load", getJson());
 
@@ -11,7 +14,6 @@ const a = document.createElement("a");
 const ips = document.getElementById("ips");
 
 const summarys = document.getElementsByClassName("summary");
-const subnets = document.getElementsByClassName("ip");
 
 async function getJson() {
   let response = await fetch(url);
@@ -20,7 +22,6 @@ async function getJson() {
   showIPs(parsed.results);
   createVisualization(parsed.results);
   listen();
-  hideSubnet();
 }
 
 function showIPs(json) {
@@ -33,20 +34,6 @@ function showIPs(json) {
   });
 }
 
-// function createVisualization(json) {
-//     let i = -1;
-//     json.forEach(element => {
-//         const cidr = new IPCIDR(element.address);
-//         i++;
-//         cidr.toArray().forEach(ip=>{
-//             let end = ip.split(/[\.\/]/);
-//             btn.innerHTML = `.${end[3]}`;
-//             btn.setAttribute('class', 'ip' + i);
-//             subnet.appendChild(btn.cloneNode(true));
-//         });
-//     });
-// }
-
 function createVisualization(json) {
   let i = 0;
   for (i = 0; i < json.length; i++) {
@@ -58,20 +45,25 @@ function createVisualization(json) {
 function createSubnet(address, index) {
   const cidr = new IPCIDR(address);
   let cidrArray = cidr.toArray();
+  cidrArray.shift();
+  cidrArray.pop();
   ipMap.set(address, cidrArray);
+  let i = 0;
   cidrArray.forEach(ip => {
     let end = ip.split(/[\.\/]/);
     btn.innerHTML = `.${end[3]}`;
     btn.setAttribute("class", "ip" + index);
+    btn.setAttribute("id", "ip" + i);
+    i++;
     subnet.appendChild(btn.cloneNode(true));
   });
-  //console.log(ipMap.get(address).includes(address.split('/')[0]));
 }
 
 function validate(ip) {
     let val = new Boolean();
     if(ipMap.size < 1) return;
-    ipMap.forEach((value, key) => { 
+    changeCSS(ip);
+    ipMap.forEach((value) => { 
         if (!value.includes(ip.split('/')[0])) {
             val = false;
         }
@@ -79,20 +71,36 @@ function validate(ip) {
     return val;
 }
 
+function changeCSS(ip) {
+    let inSubnet = ip.split(/[\.\/]/)[3]; //CHANGE only for /24
+    let newCSS = document.getElementById('ip'+inSubnet);
+    newCSS.style.color = 'gray';
+    newCSS.style.borderColor = 'gray';
+}
+
 function hideSubnet() {
-  for (let i = 0; i < subnets.length; i++) {
-    document.getElementsByClassName("ip" + i)[i].style.display = "none";
-  }
+    let j = -1;
+    ipMap.forEach((value) => {
+        j++;
+        for (let i = 0; i < value.length; i++) {
+            document.getElementsByClassName("ip" + j)[i].style.display = "none";
+        }
+    });
 }
 
 function showSubnet(index) {
   hideSubnet();
-  document.getElementsByClassName("ip" + index)[index].style.display = "inline";
+  let subnetIP = Array.from(ipMap.keys())[index];
+  let length = ipMap.get(subnetIP).length;
+  for (let i = 0; i < length; i++) {
+    document.getElementsByClassName("ip" + index)[i].style.display = "inline";
+  }
 }
 
 function listen() {
   for (let i = 0; i < summarys.length; i++) {
     summarys[i].addEventListener("click",function() {
+        console.log(`summary ${i} was clicked`);
         showSubnet(i);
     }
     ,false);
