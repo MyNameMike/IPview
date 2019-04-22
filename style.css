@@ -1,59 +1,72 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:300, 400, 700);
 
 body {
-	font-family: 'Lato', sans-serif;
-	background: #353535;
-    color: #FFF;
+  font-family: "Lato", sans-serif;
+  background: #353535;
+  color: #fff;
 }
 
 .container-fluid {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 1em 2em;
-  }
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1em 2em;
+}
 
 button {
-    border-color: coral;
-    background-color: transparent;
-    outline: none;
-    overflow: hidden;
-    border-radius: 0.25em;
-    color: #FFF;
-    padding: 0.3em 0.4em;
-    text-align: center;
-    font-size: 1em;
-    margin: 0.2em;
-    height: 2.8em;
-    width: 3.2em;
-  }
-  
+  border-color: coral;
+  background-color: transparent;
+  outline: none;
+  overflow: hidden;
+  border-radius: 0.25em;
+  color: #fff;
+  padding: 0.3em 0.4em;
+  text-align: center;
+  font-size: 1em;
+  margin: 0.2em;
+  height: 2.8em;
+  min-width: 3.2em;
+  width: auto;
+}
+
 button:hover {
-    background-color: coral;
-  }
+  background-color: coral;
+}
 
 h1 {
-    padding: 1rem 0;
-  }
+  padding: 1rem 0;
+}
 
 a {
-    word-spacing: 1em;
-    display: block;
-    text-align: left;
-    font-size: 1.5em;
-    margin: 0.4em 0;
-    color: #FFF;
-    text-decoration: none;
-    cursor: pointer;
-  }
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 a:hover {
-    color: coral;
-    text-decoration: none;
-  }
+  color: coral;
+  text-decoration: none;
+}
 
 #ips {
-      margin: 3em 0;
-  }
+  margin: 3em 0;
+}
 
+h4 {
+    color: coral;
+}
+
+table {
+    width: 65%;
+}
+
+th {
+    font-size: 1.22em;
+    height: 2em;
+}
+
+td {
+    font-size: 1.22em;
+    height: 1.75em;
+}

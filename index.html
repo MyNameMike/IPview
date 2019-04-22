@@ -11,7 +11,15 @@
   <body>
     <div class="container-fluid">
       <h1>IP Subnet Visualization</h1>
-      <div id="ips"></div>
+      <div id="err"></div>
+      <table id="ips">
+        <tr>
+          <th>IP</th>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+      </table>
+      <div id="ranges"></div>
       <div id="subnet"></div>
     </div>
     <script src="https://d3js.org/d3.v5.min.js"></script>
