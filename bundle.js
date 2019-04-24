@@ -25,6 +25,7 @@ const ranges = document.getElementById("ranges");
 const range = document.getElementsByClassName("range");
 
 let jsonAPI;
+let toggleSubnet = new Array();
 
 async function getJson() {
   let response = await fetch(url);
@@ -42,6 +43,8 @@ function summaryListen() {
     summarys[i].addEventListener("click",function() {
         console.log(`summary ${i} was clicked`);
         document.getElementById("ip-info").style.display = "inline";
+        subnet.style.display = "inline";
+        if(toggleSubnet.includes(i)) subnet.style.display = "none";
         showSubnet(i);
         showRange(i);
     }
@@ -54,7 +57,7 @@ function showIPs(json) {
     let row = ips.insertRow(ips.rows.length);
     let ip = row.insertCell(0);
     let name = row.insertCell(1);
-    let status =row.insertCell(2);
+    let status = row.insertCell(2);
     a.innerHTML = element.address;
     name.innerHTML = element.interface.virtual_machine.name;
     status.innerHTML = element.status.label;
@@ -67,13 +70,13 @@ function showIPs(json) {
 function createVisualization(json) {
     let i = 0;
     for (i = 0; i < json.length; i++) {
-      if (validate(json[i].address)) continue;
+      validate(json[i].address);
       createSubnet(json[i].address,i);
     }
 }
 
 function createSubnet(address, index) {
-    const cidr = new IPCIDR(address);
+  const cidr = new IPCIDR(address);
   let cidrArray = cidr.toArray();
   
   createRange(cidr.toRange(), cidrArray.length);
@@ -83,6 +86,7 @@ function createSubnet(address, index) {
   if (cidrArray.length > 2) {
     cidrArray.shift();
     cidrArray.pop();
+    if (cidrArray.length > 256) toggleSubnet.push(index);
   }
   let i = 0;
   cidrArray.forEach(ip => {
@@ -98,6 +102,7 @@ function createSubnet(address, index) {
 function createRange(range, length) {
   btn.innerHTML = `Subnet Range: ${range[0]} - ${range[1]} (${length})`;
   btn.setAttribute("class", "range");
+  btn.disabled = true;
   ranges.appendChild(btn.cloneNode(true));
 }
 
@@ -113,15 +118,15 @@ function hideRange(){
 }
 
 function validate(ip) {
-    let val = new Boolean();
+    // console.log(`ip: ${ip}, and map size: ${ipMap.size}`);
+    let i = 0;
     if(ipMap.size < 1) return;
-    // changeCSS(ip);
-    ipMap.forEach((value) => { 
-        if (!value.includes(ip.split('/')[0])) {
-            val = false;
-        }
+    ipMap.forEach((value) => {
+      if (value.includes(ip.split('/')[0])) {
+        changeCSS(ip, i);
+      }
+      i++;
     });
-    return val;
 }
 
 function hideSubnet() {
@@ -143,12 +148,15 @@ function showSubnet(index) {
     }
 }
 
-function changeCSS(ip) {
+function changeCSS(ip, i) {
   let inSubnet = ip.split(/[\.\/]/)[3]; //CHANGE only for /24
-  console.log('ip'+inSubnet);
+  // console.log(`ip: ${ip}, subnet: ${inSubnet}, index: ${i}`);
+  let newCSSS = document.querySelector(".ip"+i+"#ip"+inSubnet);
   let newCSS = document.getElementById('ip'+inSubnet);
-    newCSS.style.color = 'gray';
-    newCSS.style.borderColor = 'gray';
+    newCSS.style.backgroundColor = 'rgb(51,122,183)';
+    newCSSS.style.borderColor = '#337AB7'; //Active
+    newCSSS.style.borderColor = '#5BC0DE'; //Reserved
+    newCSSS.style.borderColor = '#D9534F'; //Deprecated
     newCSS.disabled = true;
 }
 
