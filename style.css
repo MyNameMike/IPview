@@ -1,10 +1,13 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
 @import url(https://fonts.googleapis.com/css?family=Lato:300, 400, 700);
 
-body {
+html, body {
   font-family: "Lato", sans-serif;
-  background: #353535;
+  background-image: linear-gradient(to bottom left, #3A5161, #554C4F);
   color: #fff;
+  margin: 0;
+  height: 100%;
+  min-height: auto;
 }
 
 .container-fluid {
@@ -15,8 +18,8 @@ body {
 }
 
 button {
-  border-color: coral;
-  background-color: transparent;
+  border-color: #ccc;
+  background-color: #444548;
   outline: none;
   overflow: hidden;
   border-radius: 0.25em;
@@ -31,7 +34,7 @@ button {
 }
 
 button:hover {
-  background-color: coral;
+  background-color: transparent;
 }
 
 h1 {
@@ -45,7 +48,7 @@ a {
 }
 
 a:hover {
-  color: coral;
+  color: #428BCA;
   text-decoration: none;
 }
 
@@ -54,7 +57,7 @@ a:hover {
 }
 
 h4 {
-    color: coral;
+    color: #428BCA;
 }
 
 table {

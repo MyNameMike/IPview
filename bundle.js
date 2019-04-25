@@ -102,7 +102,6 @@ function createSubnet(address, index) {
 function createRange(range, length) {
   btn.innerHTML = `Subnet Range: ${range[0]} - ${range[1]} (${length})`;
   btn.setAttribute("class", "range");
-  btn.disabled = true;
   ranges.appendChild(btn.cloneNode(true));
 }
 
@@ -153,10 +152,9 @@ function changeCSS(ip, i) {
   // console.log(`ip: ${ip}, subnet: ${inSubnet}, index: ${i}`);
   let newCSSS = document.querySelector(".ip"+i+"#ip"+inSubnet);
   let newCSS = document.getElementById('ip'+inSubnet);
-    newCSS.style.backgroundColor = 'rgb(51,122,183)';
-    newCSSS.style.borderColor = '#337AB7'; //Active
-    newCSSS.style.borderColor = '#5BC0DE'; //Reserved
-    newCSSS.style.borderColor = '#D9534F'; //Deprecated
+    newCSSS.style.backgroundColor = '#337AB7'; //Active
+    newCSSS.style.backgroundColor = '#5BC0DE'; //Reserved
+    newCSSS.style.backgroundColor = '#D9534F'; //Deprecated
     newCSS.disabled = true;
 }
 
