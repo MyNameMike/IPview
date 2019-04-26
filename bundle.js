@@ -61,6 +61,19 @@ function showIPs(json) {
     a.innerHTML = element.address;
     name.innerHTML = element.interface.virtual_machine.name;
     status.innerHTML = element.status.label;
+    switch(element.status.label){
+      case "Reserved":
+        status.style.backgroundColor = "#5BC0DE";
+        break;
+      case "Deprecated":
+        status.style.backgroundColor = "#D9534F";
+        break;
+      case "Active":
+        status.style.backgroundColor = "#337AB7";
+        break;
+      default:
+        status.style.backgroundColor = "transparent";
+    }
     a.setAttribute("class", "summary");
     ip.appendChild(a.cloneNode(true));
   });
@@ -117,7 +130,7 @@ function hideRange(){
 }
 
 function validate(ip) {
-    // console.log(`ip: ${ip}, and map size: ${ipMap.size}`);
+    console.log(`ip: ${ip}, and map size: ${ipMap.size}`);
     let i = 0;
     if(ipMap.size < 1) return;
     ipMap.forEach((value) => {
@@ -147,15 +160,14 @@ function showSubnet(index) {
     }
 }
 
-function changeCSS(ip, i) {
+function changeCSS(ip, i, status) {
   let inSubnet = ip.split(/[\.\/]/)[3]; //CHANGE only for /24
-  // console.log(`ip: ${ip}, subnet: ${inSubnet}, index: ${i}`);
-  let newCSSS = document.querySelector(".ip"+i+"#ip"+inSubnet);
-  let newCSS = document.getElementById('ip'+inSubnet);
-    newCSSS.style.backgroundColor = '#337AB7'; //Active
-    newCSSS.style.backgroundColor = '#5BC0DE'; //Reserved
-    newCSSS.style.backgroundColor = '#D9534F'; //Deprecated
-    newCSS.disabled = true;
+  inSubnet--;
+  console.log(`ip: ${ip}, subnet: ${inSubnet}, index: ${i}`);
+  let newCSS = document.querySelector(".ip"+i+"#ip"+inSubnet);
+    newCSS.style.borderColor = '#337AB7'; //Active
+    newCSS.style.borderColor = '#5BC0DE'; //Reserved
+    newCSS.style.borderColor = '#D9534F'; //Deprecated
 }
 
 function noContent() {
