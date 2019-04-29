@@ -63,16 +63,16 @@ function showIPs(json) {
     status.innerHTML = element.status.label;
     switch(element.status.label){
       case "Reserved":
-        status.style.backgroundColor = "#5BC0DE";
+        status.style.color = "#5BC0DE";
         break;
       case "Deprecated":
-        status.style.backgroundColor = "#D9534F";
+        status.style.color = "#D9534F";
         break;
       case "Active":
-        status.style.backgroundColor = "#337AB7";
+        status.style.color = "#337AB7";
         break;
       default:
-        status.style.backgroundColor = "transparent";
+        status.style.color = "transparent";
     }
     a.setAttribute("class", "summary");
     ip.appendChild(a.cloneNode(true));
@@ -83,7 +83,7 @@ function showIPs(json) {
 function createVisualization(json) {
     let i = 0;
     for (i = 0; i < json.length; i++) {
-      validate(json[i].address);
+      // validate(json[i].address);
       createSubnet(json[i].address,i);
     }
 }
